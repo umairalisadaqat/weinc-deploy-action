@@ -1,0 +1,46 @@
+name: "WeInc Deploy"
+description: "Publish a built static site (your dist/ folder) to a WeInc project and get the live URL back."
+author: "WeInc"
+branding:
+  icon: "upload-cloud"
+  color: "blue"
+inputs:
+  api-key:
+    description: "WeInc API key (starts with wk_). Store it as a secret, e.g. WEINC_API_KEY."
+    required: true
+  project-id:
+    description: "ID of an existing WeInc project to publish to. Leave empty to create a new project (needs client-email and name)."
+    required: false
+  client-email:
+    description: "Email of an activated client in your WeInc organization. Used only when creating a new project."
+    required: false
+  name:
+    description: "Project name. Used only when creating a new project."
+    required: false
+  description:
+    description: "Project description. Used only when creating a new project."
+    required: false
+  dist-dir:
+    description: "Folder with the built site to publish (must contain index.html). Leave empty to skip publishing."
+    required: false
+    default: "dist"
+  publish:
+    description: "Set to 'false' to only create/look up the project without publishing."
+    required: false
+    default: "true"
+  api-url:
+    description: "WeInc API base URL."
+    required: false
+    default: "https://my.we.inc/api/v1"
+outputs:
+  project-id:
+    description: "The WeInc project ID that was used or created."
+  site-url:
+    description: "The live URL of the published site (empty if the project has never been published)."
+  builder-url:
+    description: "Link to open the project in the WeInc builder."
+  status:
+    description: "Publish status reported by WeInc: 'ready', 'pending', or 'skipped'."
+runs:
+  using: "node20"
+  main: "src/index.js"

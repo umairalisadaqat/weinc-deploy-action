@@ -1,0 +1,11 @@
+{
+  "name": "weinc-deploy-action",
+  "version": "1.0.0",
+  "description": "GitHub Action: publish a built site to WeInc and output the live URL.",
+  "license": "MIT",
+  "author": "WeInc",
+  "private": true,
+  "main": "src/index.js",
+  "engines": { "node": ">=20" },
+  "scripts": { "test": "node --test test/action.test.js" }
+}
